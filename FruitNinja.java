@@ -191,7 +191,42 @@ public class FruitNinja extends Application {
                         }
                     });
             }));
+      
+          //apple count
+        go1.setOnMousePressed(e->{
+        animation.setCycleCount(11);
+        l1.setText(""+(score=score-score));
         
+        animation.play(); // Start animation
+        // bomb count 
+        animation1.setCycleCount(6);
+        animation1.play();// Start animation
+       // animation1.getKeyFrames().clear();
+       
+
+        
+        });
+        go3.setOnMousePressed(e->{
+            primaryStage.setScene(scene1);
+            t.setText("Your Score = "+ score);
+            animation.stop();
+            animation1.stop();
+            root2.getChildren().removeAll(x,y);
+           });
+        if(score == 1000){
+            x.speed_x+=10;
+            x.speed_y+=10;
+            y.speed_x+=1;
+            y.speed_y+=1;
+            
+            }
+        
+        
+    
+        primaryStage.setScene(scene1);
+        primaryStage.show();
+        primaryStage.getIcons().add(new Image("7.png"));
+
     }
 
     
