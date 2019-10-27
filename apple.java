@@ -10,5 +10,7 @@ package fruit.ninja;
  * @author Mahmoud Etman
  */
 class apple {
+	public int x=5;
+	
     
 }
