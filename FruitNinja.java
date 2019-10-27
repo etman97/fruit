@@ -39,7 +39,8 @@ import javafx.util.Duration;
  */
 public class FruitNinja extends Application {
     apple x = new apple();
-    
+     bomb y = new bomb();
+
      public class apple extends Circle {
 
         public double locationX;
@@ -86,7 +87,52 @@ public class FruitNinja extends Application {
 
         }
      }
-    
+    public class bomb extends Circle {
+
+        public double locationX;
+        public double locationY;
+        public double sceneWidth;
+        public double sceneHeight;
+        public double bombRadius;
+        public double bombscore = -200;
+        public double speed_x = 15;
+        public double speed_y = 15;
+
+        public bomb() {
+            this.bombRadius = 50;
+            bombscore = -200;
+            sceneWidth = 1024;
+            sceneHeight = 600;
+            locationX = Math.random() * (sceneWidth - bombRadius);
+            locationY = Math.random() * (sceneHeight - bombRadius);
+            setCenterX(locationX);
+            setCenterY(locationY);
+            setRadius(bombRadius);
+            Timeline animation = new Timeline(
+                    new KeyFrame(Duration.millis(30), e -> {
+                        move();
+                    }));
+            animation.setCycleCount(Timeline.INDEFINITE);
+            animation.play();
+
+        }
+
+        private void move() {
+            locationX += speed_x;
+            locationY += speed_y;
+            if (locationX > sceneWidth - bombRadius || locationX <= bombRadius) {
+                setCenterX(sceneWidth - bombRadius);
+                speed_x *= -1;
+            }
+            if (locationY > sceneHeight - bombRadius || locationY <= bombRadius) {
+                setCenterY(sceneHeight - bombRadius);
+                speed_y *= -1;
+            }
+            setCenterX(locationX);
+            setCenterY(locationY);
+
+        }
+    }    
     @Override
     public void start(Stage primaryStage) {
        
