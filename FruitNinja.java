@@ -39,8 +39,8 @@ import javafx.util.Duration;
  */
 public class FruitNinja extends Application {
     apple x = new apple();
-     bomb y = new bomb();
-
+    bomb y = new bomb();
+    int score = 0;
      public class apple extends Circle {
 
         public double locationX;
@@ -135,7 +135,63 @@ public class FruitNinja extends Application {
     }    
     @Override
     public void start(Stage primaryStage) {
-       
+       Timeline animation = new Timeline(
+                new KeyFrame(Duration.millis(2000), e -> {
+                    apple x=new apple();
+                    x.setFill(new ImagePattern(img0));
+                   //  y.setFill(new ImagePattern(img1));
+                   root2.getChildren().addAll(x );
+                      scene2.widthProperty().addListener((ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) -> {
+            x.sceneWidth=scene2.getWidth();
+            x.locationX=x.sceneWidth*Math.random()/2;  
+        });
+        scene2.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneHeight, Number newSceneHeight) {
+                x.sceneHeight=scene2.getHeight();
+
+                x.locationY=scene2.getHeight()*Math.random()/2;    
+            }
+        });
+          
+                  x.setOnMousePressed(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent e) {
+                            score=((int) x.applescore)+score;
+                            l1.setText(""+score);
+                            root2.getChildren().remove(x);
+                            
+                        }
+                    });
+               
+      }));
+         Timeline animation1 = new Timeline(
+                new KeyFrame(Duration.millis(3500), e -> {
+                    bomb y = new bomb();
+                     y.setFill(new ImagePattern(img1));
+                   root2.getChildren().addAll(y );
+                            scene2.widthProperty().addListener((ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) -> {
+            y.sceneWidth=scene2.getWidth();
+            y.locationX=y.sceneWidth*Math.random()/2;  
+        });
+        scene2.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneHeight, Number newSceneHeight) {
+                y.sceneHeight=scene2.getHeight();
+
+                y.locationY=scene2.getHeight()*Math.random()/2;    
+            }
+        });
+                 y.setOnMousePressed(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent e) {
+                            score  =((int) y.bombscore ) + score;
+                            l1.setText(""+score);
+                            root2.getChildren().remove(y);
+                        }
+                    });
+            }));
+        
     }
 
     
