@@ -135,11 +135,120 @@ public class FruitNinja extends Application {
     }    
     @Override
     public void start(Stage primaryStage) {
+        
+         primaryStage.setTitle("NinjaFruit 1.0");
+        Pane root1 = new Pane();
+        Pane root2 = new Pane();
+     
+
+        final Scene scene1 = new Scene(root1, 1024, 600);
+        final Scene scene2 = new Scene(root2, 1024, 600);
+        
+
+        Button go1 = new Button();
+
+        go1.setText("Play");
+        go1.setOnAction(e -> primaryStage.setScene(scene2));
+
+        ImageView image = new ImageView("3.png");
+
+       
+        root1.getChildren().add(image);
+
+        Button go2 = new Button();
+        go2.setText("Exit");
+        go2.setOnAction(e -> System.exit(0));
+
+      
+        Button go4 = new Button();
+        go4.setText("Exit");
+        go4.setOnAction(e -> System.exit(0));
+
+       
+        TextField l1 = new TextField();
+        l1.setEditable(false);
+        TextField t = new TextField("Your Score =    " + 0);
+        t.setEditable(false);
+
+        
+        VBox vb = new VBox(5);
+
+        
+        Label l = new Label("Mahmoud Etman  -  mohamed abd el sattar");
+
+        l.setPrefWidth(200);
+        l.setWrapText(true);
+        l.setTextFill(Color.WHITE);
+
+        
+        Label l3= new Label("Undersupervision of : Eng . Mahmoud Ibrahim");
+        l3.setTextFill(Color.WHITE);
+        l3.setWrapText(true);
+         vb.setTranslateY(50);
+        
+        
+      
+      
+        
+        vb.getChildren().addAll(l,l3);
+               
+        
+
+        ImageView image1 = new ImageView("1.png");
+
+      
+        root2.getChildren().add(image1);
+
+        Button go3 = new Button();
+        go3.setText("Back to Start");
+        
+       
+
+        FlowPane fb = new FlowPane();
+        fb.setHgap(20);
+        fb.setPadding(new Insets(15));
+        fb.setAlignment(Pos.CENTER);
+        fb.setLayoutX(100);
+        
+        fb.getChildren().addAll(go4, go1,t);
+
+        root1.getChildren().addAll(fb,vb);
+
+
+        FlowPane fb1 = new FlowPane();
+        fb1.setHgap(20);
+        fb1.setPadding(new Insets(15));
+        fb1.setAlignment(Pos.CENTER);
+        fb1.setLayoutX(100);
+
+        fb1.getChildren().addAll(go2, go3, l1);
+
+        root2.getChildren().addAll(fb1);
+
+       
+        Image img = new Image("4.png");
+
+        root1.setCursor(new ImageCursor(img));
+        root2.setCursor(new ImageCursor(img));
+
+       
+        image.fitWidthProperty().bind(root1.widthProperty());
+        image.fitHeightProperty().bind(root1.heightProperty());
+        image1.fitHeightProperty().bind(root2.heightProperty());
+        image1.fitWidthProperty().bind(root2.widthProperty());
+
+        
+        Image img0 = new Image("5.png");
+      
+        Image img1 = new Image("6.png");
+
+      
+        
        Timeline animation = new Timeline(
                 new KeyFrame(Duration.millis(2000), e -> {
                     apple x=new apple();
                     x.setFill(new ImagePattern(img0));
-                   //  y.setFill(new ImagePattern(img1));
+               
                    root2.getChildren().addAll(x );
                       scene2.widthProperty().addListener((ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) -> {
             x.sceneWidth=scene2.getWidth();
@@ -192,16 +301,16 @@ public class FruitNinja extends Application {
                     });
             }));
       
-          //apple count
+        
         go1.setOnMousePressed(e->{
         animation.setCycleCount(11);
         l1.setText(""+(score=score-score));
         
-        animation.play(); // Start animation
-        // bomb count 
+        animation.play(); 
+       
         animation1.setCycleCount(6);
-        animation1.play();// Start animation
-       // animation1.getKeyFrames().clear();
+        animation1.play();
+       
        
 
         
