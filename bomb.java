@@ -10,5 +10,12 @@ package fruit.ninja;
  * @author Mahmoud Etman
  */
 class bomb {
-    
+	private int x=0;
+	private int y=0;
+
+	public bomb(x,y)
+	{
+		this.x=x;
+		this.y=y;
+	}
 }
